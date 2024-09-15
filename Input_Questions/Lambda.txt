@@ -1,0 +1,144 @@
+Question:What is the maximum execution time for an AWS Lambda function?
+Answer: 15 minutes.
+AWS Lambda functions have a maximum execution time limit of 15 minutes. Any execution exceeding this limit will be terminated.
+Question:What is the maximum memory allocation for an AWS Lambda function?
+Answer: 10 GB.
+AWS Lambda functions can be allocated up to a maximum of 10 GB of memory. This memory allocation affects the performance and resource usage of the function.
+What is the minimum memory allocation for an AWS Lambda function?
+Answer: 128 MB.
+AWS Lambda functions can be allocated a minimum of 128 MB of memory. This minimum allocation ensures that even small functions can run efficiently.
+Question:What is the maximum size of the deployment package for an AWS Lambda function?
+Answer: 50 MB (compressed).
+Explanation: The deployment package for an AWS Lambda function, which includes the function code and any dependencies, must be less than 50 MB when compressed. This size limitation ensures efficient deployment and execution.
+Question:What is the maximum size of the uncompressed deployment package for an AWS Lambda function?
+Answer: 250 MB.
+While the compressed deployment package must be less than 50 MB, the uncompressed size of the package can be up to 250 MB. This allows for larger dependencies or assets within the function.
+Question:What is the maximum size of the payload that can be passed to an AWS Lambda function via synchronous invocation?
+Answer: 6 MB.
+When invoking an AWS Lambda function synchronously (e.g., via API Gateway), the payload size is limited to 6 MB. Larger payloads will result in a 'PayloadTooLarge' error.
+Question:What is the maximum duration for a single request/response round-trip for an AWS Lambda function invoked synchronously?
+Answer: 30 seconds.
+The entire request/response round-trip duration for a synchronous invocation of an AWS Lambda function cannot exceed 30 seconds. This includes the time taken for processing by the function.
+Question:What is the maximum number of concurrent executions allowed for an AWS Lambda function (per account)?
+Answer: Account-level limit varies.
+The maximum number of concurrent executions allowed for an AWS Lambda function varies depending on the AWS account’s limits. It’s important to monitor and adjust this limit as needed to avoid throttling.
+Question:What is the minimum billing duration for an AWS Lambda function invocation?
+Answer: 100 milliseconds.
+Explanation: AWS Lambda functions are billed in increments of 100 milliseconds. Even if a function executes for a shorter duration, it will be rounded up to the nearest 100 milliseconds for billing purposes.
+Question:What is the minimum granularity for AWS Lambda function invocation logs?
+Answer: 1 millisecond.
+Explanation: AWS Lambda provides detailed invocation logs with a granularity of 1 millisecond. This allows developers to accurately track the performance and execution times of their functions.
+Question:What is the maximum number of environment variables that can be configured for an AWS Lambda function?
+Answer: 1000.
+AWS Lambda allows you to configure up to 1000 environment variables for a function. These variables can be used to pass configuration settings or sensitive information to the function.
+Question:What is the maximum duration for an AWS Lambda function’s initialization (cold start) process?
+Answer: 10 minutes.
+The initialization process for an AWS Lambda function, also known as a cold start, can take up to 10 minutes. During this time, AWS provisions resource and prepares the function for execution.
+Question:What is the maximum number of layers that can be attached to an AWS Lambda function?
+Answer: 5.
+AWS Lambda allows you to attach up to 5 layers to a function. Layers can contain additional code, dependencies, or resources that are shared across multiple functions.
+Question:What is the maximum duration for an AWS Lambda function’s idle time before it’s automatically deleted?
+Answer: 365 days.
+If an AWS Lambda function remains idle (i.e., not invoked) for 365 days, it will be automatically deleted by AWS Lambda. This helps to manage resources and reduce costs for unused functions.
+Question:What is the maximum number of layers that can be referenced by a single AWS Lambda function?
+Answer: 5.
+A single AWS Lambda function can reference up to 5 layers. These layers can contain shared code, libraries, or resources that are reused across multiple functions.
+Question:What is the maximum number of versions that can be created for an AWS Lambda function?
+Answer: Unlimited.
+There is no limit to the number of versions that can be created for an AWS Lambda function. Each deployment or update creates a new version, allowing for easy rollback or testing.
+Question:What is the maximum number of aliases that can be created for an AWS Lambda function?
+Answer: Unlimited.
+AWS Lambda allows you to create unlimited aliases for a function. Aliases provide a way to reference different versions or configurations of the function without changing the invocation code.
+Question:What is the maximum number of concurrent executions allowed for a specific AWS Lambda function (per region)?
+Answer: Regional limit varies.
+The maximum number of concurrent executions allowed for a specific AWS Lambda function varies depending on the region and the account’s limits. It’s important to monitor and adjust this limit as needed.
+Question:What is the maximum size of the response that can be returned by an AWS Lambda function?
+Answer: 6 MB.
+The maximum size of the response returned by an AWS Lambda function, whether synchronous or asynchronous, is limited to 6 MB. Larger responses will result in an error.
+Question:What is the maximum number of retries for an asynchronous invocation of an AWS Lambda function?
+Answer: 2.
+Explanation: When invoking an AWS Lambda function asynchronously, AWS Lambda will automatically retry the invocation twice in case of failure. After the maximum number of retries is reached, the event will be discarded.
+Question:What is the maximum number of layers that can be published within a single AWS Lambda layer version?
+Answer: 5.
+Explanation: When publishing a new version of an AWS Lambda layer, you can include up to 5 layers within the same version. This allows for easy management and distribution of related code and resources.
+Question:What is the maximum number of functions that can be included in a single AWS Lambda deployment package (zip file)?
+Answer: No hard limit.
+There is no hard limit on the number of functions that can be included in a single AWS Lambda deployment package (zip file). However, larger packages may encounter deployment or performance issues.
+Question:What is the maximum duration for an AWS Lambda function’s execution in a Step Functions state machine?
+Answer: 1 year.
+When an AWS Lambda function is executed as part of an AWS Step Functions state machine, the maximum duration for the function’s execution is 1 year. This allows for long-running or recurring tasks.
+Question:What is the maximum number of tags that can be assigned to an AWS Lambda function?
+Answer: 50.
+AWS Lambda functions can be tagged with up to 50 tags. Tags provide metadata that can be used for organization, resource management, and cost allocation.
+Question:What is the maximum size of an environment variable value that can be set for an AWS Lambda function?
+Answer: 4 KB.
+Each individual environment variable value set for an AWS Lambda function cannot exceed 4 KB in size. This limitation ensures efficient storage and retrieval of configuration data.
+Question: You are designing a serverless application that needs to process images uploaded to an S3 bucket. Each image processing task takes around 2 minutes to complete. How can you ensure that the Lambda function does not timeout during execution?
+Answer: Increase the Lambda function’s timeout configuration to more than 2 minutes.
+By default, Lambda functions have a timeout of 3 seconds. However, you can adjust this timeout setting to a maximum of 15 minutes. In this scenario, setting the timeout to a value greater than 2 minutes ensures that the function has enough time to process each image without being terminated prematurely.
+Question:You have a Lambda function that retrieves data from a DynamoDB table and performs some calculations on it. The function is frequently timing out due to slow database queries. How can you optimize the performance of the function?
+Answer: Enable provisioned concurrency for the Lambda function.
+Provisioned concurrency allows you to pre-allocate a number of execution environments for your Lambda function, ensuring that it can handle sudden spikes in traffic without experiencing cold starts or delays due to resource provisioning. This can significantly improve the performance of the function, especially when interacting with slow or heavily loaded databases like DynamoDB.
+Question:You have a Lambda function that processes incoming messages from an SQS queue. Occasionally, the function encounters errors while processing messages, leading to data loss. How can you ensure that no messages are lost during processing?
+Answer: Configure a dead-letter queue (DLQ) for the SQS queue.
+A dead-letter queue (DLQ) allows you to capture messages that cannot be processed successfully by a Lambda function. By configuring a DLQ for the SQS queue, any messages that result in processing errors will be automatically routed to the DLQ, preventing data loss and allowing for later analysis or reprocessing.
+Question:You are building a real-time chat application using WebSockets and Lambda. How can you handle concurrent WebSocket connections efficiently without overwhelming the Lambda function?
+Answer: Use Amazon API Gateway with WebSocket integration to manage WebSocket connections.
+Amazon API Gateway provides native support for WebSocket connections, allowing you to efficiently manage and scale WebSocket connections without directly invoking Lambda functions for each connection. This helps distribute the load and ensures that Lambda functions are only invoked when necessary, optimizing resource usage and performance.
+Question:You have a Lambda function that processes sensitive data and needs to be invoked securely. How can you ensure that the function is invoked securely?
+Answer: Use AWS Identity and Access Management (IAM) to control access to the Lambda function.
+IAM allows you to define fine-grained access policies that specify who can invoke the Lambda function and under what conditions. By properly configuring IAM roles and policies, you can ensure that only authorized entities can invoke the function, reducing the risk of unauthorized access or data breaches.
+Question:You have a Lambda function that generates PDF reports based on user requests. The function occasionally encounters memory-related errors when processing large datasets. How can you address this issue?
+Answer: Increase the memory allocation for the Lambda function.
+Memory allocation directly impacts the performance and resource usage of a Lambda function. By increasing the memory allocation, you also get a proportional increase in CPU and other resources available to the function, which can help mitigate memory-related errors and improve performance, especially when dealing with large datasets.
+Question:You have multiple Lambda functions that share a common codebase and dependencies. How can you reduce code duplication and simplify maintenance across these functions?
+Answer: Package the shared code and dependencies into Lambda layers.
+Lambda layers allow you to centrally manage and share code, libraries, and dependencies across multiple Lambda functions. By creating a layer containing the common codebase and dependencies, you can reduce code duplication, simplify maintenance, and ensure consistency across functions.
+Question:You are developing a Lambda function that needs to access resources in a VPC, such as an RDS database. How can you configure the function to access resources within the VPC securely?
+Answer: Configure the Lambda function to run within the same VPC as the resources it needs to access.
+By configuring the Lambda function to run within the same VPC as the resources it needs to access, you can ensure secure communication and network isolation. Additionally, you can configure security groups and network access control lists (ACLs) to control inbound and outbound traffic to and from the Lambda function.
+Question:You have a Lambda function that processes sensitive data and must comply with strict regulatory requirements. How can you ensure that data processed by the function remains encrypted both in transit and at rest?
+Answer: Enable encryption at rest for the data stored in S3 and use HTTPS for data in transit.
+By enabling encryption at rest for the S3 bucket storing the data and using HTTPS for data transmission between services, you can ensure that sensitive data remains encrypted both when stored and when transmitted over the network. This helps maintain compliance with regulatory requirements and protects data from unauthorized access.
+Question:You are developing a serverless application that needs to perform complex data processing tasks. How can you orchestrate multiple Lambda functions to work together in a coordinated manner?
+Answer: Use AWS Step Functions to orchestrate the workflow and coordinate the execution of multiple Lambda functions.
+AWS Step Functions allow you to define and orchestrate complex workflows using a visual interface or JSON state machine definition. You can use Step Functions to coordinate the execution of multiple Lambda functions, manage state transitions, and handle error scenarios, making it easier to build and maintain complex serverless applications.
+Question:You have a Lambda function that is experiencing frequent cold starts, impacting its performance. How can you minimize cold starts and improve the function’s responsiveness?
+Answer: Enable provisioned concurrency for the Lambda function.
+Provisioned concurrency allows you to preallocate a number of execution environments for your Lambda function, ensuring that it can handle sudden spikes in traffic without experiencing cold starts or delays due to resource provisioning. This can significantly improve the performance of the function and reduce latency for incoming requests.
+Question:You have a Lambda function that is processing data from an Amazon Kinesis stream. How can you scale the function dynamically based on the incoming data rate?
+Answer: Use AWS Lambda’s event source mapping with Amazon Kinesis to automatically scale the function based on the incoming data rate.
+AWS Lambda’s event source mapping allows you to automatically scale Lambda functions based on the rate of incoming events from supported event sources such as Amazon Kinesis streams. By configuring event source mappings for the Lambda function, you can ensure that it scales dynamically to handle fluctuations in data volume, without manual intervention.
+Question:You have a Lambda function that is invoked by an Amazon S3 bucket whenever a new object is uploaded. How can you ensure that the function processes each object exactly once, even in the event of function failures or retries?
+Answer: Use Amazon S3 event notifications with Lambda’s at-least-once invocation model and idempotent processing logic.
+Amazon S3 event notifications trigger Lambda functions asynchronously with an at-least-once invocation model, meaning that the function may be invoked multiple times for the same event. To ensure exactly-once processing, you should implement idempotent processing logic within the Lambda function, allowing it to safely handle duplicate invocations and process each object exactly once.
+Question:You are developing a Lambda function that needs to interact with resources in another AWS account. How can you grant the necessary permissions to the function securely?
+Answer: Use AWS Identity and Access Management (IAM) roles to grant cross-account access permissions to the Lambda function.
+IAM roles allow you to define granular access policies that specify which AWS resources and operations a Lambda function can access. By creating an IAM role with the necessary permissions and establishing a trust relationship with the other AWS account, you can securely grant cross-account access to the Lambda function without exposing sensitive credentials.
+Question:You have a Lambda function that processes messages from an Amazon SQS queue. How can you ensure that the function scales dynamically to handle increasing message volumes?
+Answer: Use AWS Lambda’s event source mapping with Amazon SQS to automatically scale the function based on the number of messages in the queue.
+AWS Lambda’s event source mapping allows you to automatically scale Lambda functions based on the number of messages in supported event sources such as Amazon SQS queues. By configuring event source mappings for the Lambda function, you can ensure that it scales dynamically to handle increasing message volumes, without manual intervention.
+Question:You have a Lambda function that processes data from an Amazon DynamoDB stream. How can you ensure that the function processes each record exactly once, even in the event of function failures or retries?
+Answer: Enable enhanced fan-out for the DynamoDB stream and configure the Lambda function to use the 'at-least-once' processing model with idempotent processing logic.
+Enhanced fan-out allows multiple consumers, including Lambda functions, to read from a DynamoDB stream concurrently. By enabling enhanced fan-out and implementing idempotent processing logic within the Lambda function, you can ensure that each record is processed exactly once, even in the event of function failures or retries.
+Question:You have a Lambda function that is triggered by changes to an Amazon S3 bucket. How can you optimize the function’s performance when processing large numbers of objects concurrently?
+Answer: Configure the S3 bucket to use S3 batch operations for large-scale object processing, and configure the Lambda function to process objects in parallel using concurrent execution.
+S3 batch operations allow you to perform large-scale operations on Amazon S3 objects, such as copying or deleting objects, in a cost-effective and efficient manner. By configuring the S3 bucket to use batch operations and configuring the Lambda function to process objects in parallel using concurrent execution, you can optimize the function’s performance when processing large numbers of objects concurrently.
+Question:You have a Lambda function that is invoked by an Amazon SNS topic. How can you ensure that the function processes each message exactly once, even in the event of function failures or retries?
+Answer: Use Amazon SNS’s 'at-least-once' delivery model with Lambda’s idempotent processing logic.
+Amazon SNS guarantees 'at-least-once' delivery of messages to subscribers, including Lambda functions. To ensure that each message is processed exactly once, even in the event of function failures or retries, you should implement idempotent processing logic within the Lambda function, allowing it to safely handle duplicate messages and process each message exactly once.
+Question:You have a Lambda function that is processing data from an Amazon Kinesis Data Firehose delivery stream. How can you ensure that the function processes each record exactly once, even in the event of function failures or retries?
+Answer: Use Amazon Kinesis Data Firehose’s 'exactly-once' delivery guarantee with Lambda’s idempotent processing logic.
+Amazon Kinesis Data Firehose guarantees 'exactly-once' delivery of records to destinations, including Lambda functions. To ensure that each record is processed exactly once, even in the event of function failures or retries, you should implement idempotent processing logic within the Lambda function, allowing it to safely handle duplicate records and process each record exactly once.
+Question:You have a Lambda function that is processing events from an Amazon CloudWatch Events rule. How can you ensure that the function processes each event exactly once, even in the event of function failures or retries?
+Answer: Use Amazon CloudWatch Events’ 'at-least-once' delivery model with Lambda’s idempotent processing logic.
+Amazon CloudWatch Events guarantees 'at-least-once' delivery of events to targets, including Lambda functions. To ensure that each event is processed exactly once, even in the event of function failures or retries, you should implement idempotent processing logic within the Lambda function, allowing it to safely handle duplicate events and process each event exactly once.
+Question:You have a Lambda function that processes data from an Amazon S3 bucket. How can you optimize the function’s performance when processing a large number of small objects?
+Answer: Configure the S3 bucket to use S3 Transfer Acceleration, and enable AWS Lambda’s 'streaming' mode for processing object events.
+S3 Transfer Acceleration accelerates the transfer of data to and from Amazon S3 by leveraging the AWS global network of edge locations. By enabling Transfer Acceleration for the S3 bucket and configuring the Lambda function to process object events in 'streaming' mode, you can optimize the function’s performance when processing a large number of small objects, reducing latency and improving throughput.
+Question:You have a Lambda function that needs to access sensitive configuration values, such as API keys and database connection strings. How can you securely store and retrieve these configuration values within the function?
+Answer: Use AWS Systems Manager Parameter Store to securely store and retrieve configuration values, and grant the Lambda function permission to access the parameter values using AWS Identity and Access Management (IAM) roles.
+AWS Systems Manager Parameter Store allows you to securely store and retrieve configuration values, such as API keys and database connection strings, as parameters. By storing sensitive configuration values in Parameter Store and granting the Lambda function permission to access the parameter values using IAM roles, you can ensure secure storage and retrieval of configuration values within the function.
+Question:You have a Lambda function that needs to perform long-running computations, which may exceed the function’s maximum execution time. How can you design the function to handle long-running computations without timing out?
+Answer: Use AWS Step Functions to orchestrate the long-running computation as a state machine, and configure the Lambda function to process each state in the state machine.
+AWS Step Functions allow you to orchestrate long-running workflows as state machines, with each state representing a specific computation or task. By configuring the Lambda function to process.

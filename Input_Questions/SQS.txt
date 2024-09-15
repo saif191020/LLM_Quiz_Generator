@@ -1,0 +1,80 @@
+Question:What is the maximum number of messages that can be retrieved from an SQS queue with a single ReceiveMessage API call?
+Answer: 10 — The ReceiveMessage API call allows you to retrieve up to 10 messages at a time.
+Question:What is the maximum retention period for messages in an SQS queue?
+Answer: 14 days — SQS allows you to retain messages in a queue for a maximum of 14 days.
+Question: What is the default visibility timeout for an SQS message in seconds?
+Answer: 30 seconds — The default visibility timeout for an SQS message is 30 seconds.
+Question:What is the maximum size of a single message in SQS in KB?
+Answer: 256 KB — The maximum size for a single message in SQS is 256 KB.
+Question:How many attributes can you add to a single SQS message?
+Answer: 10 — You can add up to 10 custom attributes to a single SQS message.
+Question:What is the maximum delay that can be applied to an SQS message in seconds?
+Answer: 900 seconds (15 minutes) — The maximum delay that can be applied to an SQS message is 900 seconds, which is 15 minutes.
+Question:How many times can a message be received and processed before it is moved to a dead-letter queue by default?
+Answer: 10 — By default, a message can be received and processed up to 10 times before it is moved to a dead-letter queue.
+Question:What is the maximum number of queues that can be created per AWS account by default?
+Answer: 1,000 — By default, you can create up to 1,000 queues per AWS account.
+Question:What is the maximum length of time a long polling ReceiveMessage request can wait for a message in seconds?
+Answer: 20 seconds, The maximum length of time a long polling ReceiveMessage request can wait for a message is 20 seconds.
+Question:What is the maximum number of messages that can be sent in a single SendMessageBatch API call?
+Answer: 10 — You can send up to 10 messages in a single SendMessageBatch API call.
+Question:What is the maximum number of messages that can be deleted in a single DeleteMessageBatch API call?
+Answer: 10 — You can delete up to 10 messages in a single DeleteMessageBatch API call.
+Question:What is the maximum number of message attributes that can be set per queue?
+Answer: 50 — You can set up to 50 message attributes per queue.
+Question:What is the minimum visibility timeout for an SQS message in seconds?
+Answer: 0 seconds — The minimum visibility timeout for an SQS message is 0 seconds.
+Question:What is the maximum visibility timeout for an SQS message in seconds?
+Answer: 43,200 seconds (12 hours) — The maximum visibility timeout for an SQS message is 43,200 seconds, which is 12 hours.
+Question:What is the default delay for an SQS message in seconds if no delay is specified?
+Answer: 0 seconds — The default delay for an SQS message if no delay is specified is 0 seconds.
+Question:What is the maximum number of messages that can be returned by the ListDeadLetterSourceQueues API call?
+Answer: 1000 — The ListDeadLetterSourceQueues API call can return up to 1000 messages.
+Question:How many times will SQS attempt to deliver a message to a consumer if no other consumer acknowledges it and the visibility timeout is not changed?
+Answer: Indefinitely (until the message retention period expires) — SQS will continue to attempt to deliver the message until it is acknowledged or the message retention period expires.
+Question:What is the maximum number of messages that can be received in a single ReceiveMessage API call in a FIFO queue?
+Answer: 10 — The maximum number of messages that can be received in a single ReceiveMessage API call in a FIFO queue is 10, the same as a standard queue.
+Question:What is the minimum message size that incurs a charge in SQS (in KB)?
+Answer: 1 KB — The minimum message size that incurs a charge in SQS is 1 KB, even if the actual message is smaller.
+Question:What is the maximum number of distinct message groups that can be used in a FIFO queue?
+Answer: There is no explicit limit — There is no explicit limit on the number of distinct message groups in a FIFO queue; it depends on practical limits of usage and performance considerations.
+Question: You have an application that uses Amazon SQS to decouple different components. How can you ensure that messages are processed at least once?
+Answer: By using the default SQS configuration where messages are delivered at least once. Implement idempotency in the processing logic to handle duplicate messages.
+Question: How would you handle a situation where the processing of a message fails? What happens to the message in the SQS queue?
+Answer: If processing fails and the message is not deleted, it becomes visible again after the visibility timeout. The message will be retried until it is successfully processed or reaches the maximum retention period.
+Question: What is the difference between standard and FIFO queues in SQS?
+Answer: Standard queues offer maximum throughput, best-effort ordering, and at-least-once delivery. FIFO queues ensure exactly-once processing, in-order message delivery, and limited throughput.
+Question: What is visibility timeout in SQS, and how does it impact message processing?
+Answer: Visibility timeout is the period during which a message is invisible to other consumers after being retrieved by one consumer. If not processed within this time, it becomes visible again and can be reprocessed.
+Question: How can you optimize the cost and efficiency of polling messages from an SQS queue?
+Answer: By using long polling, which reduces the number of empty responses and lowers the cost associated with frequent short polls.
+Question: Describe a scenario where you need to change the visibility timeout of a specific message dynamically.
+Answer: When processing a message that takes longer than expected, you can extend the visibility timeout to prevent the message from becoming visible and being processed by another consumer.
+Question: How can you ensure that a message is processed only once in a distributed system using SQS?
+Answer: By using FIFO queues and incorporating message deduplication with a unique message ID or implementing idempotent processing logic in the consumer application.
+Question: What is a Dead Letter Queue (DLQ) in SQS, and when would you use it?
+Answer: A DLQ is used to handle messages that cannot be processed successfully after multiple attempts. It helps in isolating and debugging problematic messages.
+Question: How do you configure a DLQ for an existing SQS queue?
+Answer: By specifying a DLQ in the main queue’s settings and defining the maximum receive count, after which messages are automatically moved to the DLQ.
+Question: How do you control access to an SQS queue?
+Answer: By using IAM policies and SQS queue policies to grant or deny permissions for specific actions (e.g., SendMessage, ReceiveMessage) to users or roles.
+Question: What measures can you take to secure messages in transit and at rest in SQS?
+Answer: Use HTTPS for secure transmission and enable server-side encryption (SSE) with AWS KMS to encrypt messages at rest.
+Question: How can you integrate SQS with AWS Lambda to process messages automatically?
+Answer: By creating an event source mapping between the SQS queue and the Lambda function, enabling the function to be triggered when new messages are available.
+Question: Describe a use case where you would use SQS in conjunction with Amazon SNS.
+Answer: Use SNS to broadcast messages to multiple SQS queues to distribute workloads or deliver notifications to multiple systems simultaneously.
+Question: How can you monitor the health and performance of your SQS queues?
+Answer: By using Amazon CloudWatch metrics such as ApproximateNumberOfMessagesVisible, ApproximateAgeOfOldestMessage, and NumberOfMessagesDeleted.
+Question: How do you troubleshoot issues with message delivery in SQS?
+Answer: Check CloudWatch metrics, review DLQ for problematic messages, verify IAM policies, and use CloudTrail logs to track API calls.
+Question: What is the purpose of message attributes in SQS, and how would you use them?
+Answer: Message attributes provide additional metadata about the message. Use them to pass custom data without affecting the message body, enabling more complex processing logic.
+Question: Explain the role of batching in SQS and how it improves performance.
+Answer: Batching allows sending, receiving, and deleting multiple messages in a single request, reducing the number of API calls and improving throughput and efficiency.
+Question: How would you handle message ordering in a distributed system with SQS?
+Answer: Use FIFO queues to preserve message order. If using standard queues, implement application-level logic to handle ordering.
+Question: How do you ensure your SQS queue scales to handle a large influx of messages?
+Answer: Use standard queues for unlimited throughput, enable long polling to reduce costs, and design your consumers to scale horizontally based on the number of messages.
+Question: What are the best practices for designing a resilient system using SQS?
+Answer: Implement DLQs for message failure handling, use visibility timeout adjustments for long-running tasks, enable monitoring and alerting, and design idempotent message processing.
